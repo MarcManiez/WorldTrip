@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 0, lng: 0},
+          zoom: 2
+        });
+
+        function createMarker(country, latlong, blog_URL, gallery_URL){
+          var marker = new google.maps.Marker({
+            position: latlong,
+            title: country });
+          var infowindow = new google.maps.InfoWindow({
+            content: '<p><u>'+country+':</u></a></p>\
+                      <p><a href='+blog_URL+'>Blog</a></p>\
+                      <p><a href='+gallery_URL+'>Gallery</a></p>'
+          });
+          marker.setMap(map);
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+        }
+
+        var countriesVisited = [];
+
+        function Country(country, latlong, blog_URL, gallery_URL) {
+          this.country = country;
+          this.latlong = latlong;
+          this.blog_URL = blog_URL;
+          this.gallery_URL = gallery_URL;
+          this.createMarker = function(){createMarker(this.country, this.latlong, this.blog_URL, this.gallery_URL)};
+          countriesVisited.push(this);
+        }
+
+        // var greece = new Country("Greece", {lat: 39.0742, lng: 21.8243}, "http://www.detour-ahead.com/blog?tag=Greece", "http://www.detour-ahead.com/greece/");
+        var france = new Country("France", {lat: 46.2276, lng: 2.2137}, "http://www.detour-ahead.com/blog?tag=France", "http://www.detour-ahead.com/france/");
+        var southAfrica = new Country("South Africa", {lat: -30.5595, lng: 22.9375}, "http://www.detour-ahead.com/blog?tag=South+Africa", "http://www.detour-ahead.com/south-africa/");
+        var thailand = new Country("Thailand", {lat: 15.8700, lng: 100.9925}, "http://www.detour-ahead.com/blog?tag=Thailand", "http://www.detour-ahead.com/thailand/");
+        var vietnam = new Country("vietnam", {lat: 14.0583, lng: 108.2772}, "http://www.detour-ahead.com/blog?tag=Vietnam", "http://www.detour-ahead.com/vietnam/");
+        var cambodia = new Country("Cambodia", {lat: 12.5657, lng: 104.9910}, "http://www.detour-ahead.com/blog?tag=Cambodia", "http://www.detour-ahead.com/cambodia/");
+        var india = new Country("India", {lat: 20.5937, lng: 78.9629}, "http://www.detour-ahead.com/blog?tag=India", "http://www.detour-ahead.com/india/");
+        var china = new Country("China", {lat: 35.8617, lng: 104.1954}, "http://www.detour-ahead.com/blog?tag=China", "http://www.detour-ahead.com/china/");
+        var japan = new Country("Japan", {lat: 36.2048, lng: 138.2529}, "http://www.detour-ahead.com/blog?tag=Japan", "http://www.detour-ahead.com/japan/");
+        var unitedStates = new Country("United States of America", {lat: 37.0902, lng: -95.7129}, "http://www.detour-ahead.com/blog?tag=United+States", "http://www.detour-ahead.com/united_states/");
+        var iceland = new Country("Iceland", {lat: 64.9631, lng: -19.0208}, "http://www.detour-ahead.com/blog?tag=Iceland", "http://www.detour-ahead.com/iceland/");
+        var scotland = new Country("Scotland", {lat: 56.4907, lng: -4.2026}, "http://www.detour-ahead.com/blog?tag=Scotland", "http://www.detour-ahead.com/scotland/");
+        var norway = new Country("Norway", {lat: 60.4720, lng: 8.4689}, "http://www.detour-ahead.com/blog?tag=Norway", "http://www.detour-ahead.com/norway/");
+        var denmark = new Country("Denmark", {lat: 56.2639, lng: 9.5018}, "http://www.detour-ahead.com/blog?tag=Denmark", "http://www.detour-ahead.com/denmark/");
+        var germany = new Country("Germany", {lat: 51.1657, lng: 10.4515}, "http://www.detour-ahead.com/blog?tag=Germany", "http://www.detour-ahead.com/germany/");
+        var czechRepublic = new Country("Czech Republic", {lat: 49.8175, lng: 15.4730}, "http://www.detour-ahead.com/blog?tag=Czech+Republic", "http://www.detour-ahead.com/czech-republic/");
+        var austria = new Country("Austria", {lat: 47.5162, lng: 14.5501}, "http://www.detour-ahead.com/blog?tag=Austria", "http://www.detour-ahead.com/austria/");
+        var italy = new Country("Italy", {lat: 41.8719, lng: 12.5674}, "http://www.detour-ahead.com/blog?tag=Italy", "http://www.detour-ahead.com/italy/");
+
+        for (n in countriesVisited) {
+          countriesVisited[n].createMarker();
+        }
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDzresIhGt1ozF9P0ny5emPudTDD-f4Phk&callback=initMap"
+    async defer></script>
+  </body>
+</html>
