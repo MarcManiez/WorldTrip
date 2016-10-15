@@ -59,17 +59,20 @@
         }
 
         function CloseInfowindows(){
-          for (var i = 0 ; i < countryMapObjects.infowindows.length ; i++) {
-            CloseInfowindow(countryMapObjects.infowindows[i]);
-          }
+          countryMapObjects.infowindows.forEach(CloseInfowindow);
+          // for (var i = 0 ; i < countryMapObjects.infowindows.length ; i++) {
+          //   CloseInfowindow(countryMapObjects.infowindows[i]);
+          // }
         }
 
         function CreateListener(marker, infowindow){
           marker.addListener('click', function() {
-            CloseInfowindows();
+            // CloseInfowindows();
             if (infowindow.opened) {
-              CloseInfowindow(infowindow);
+              // CloseInfowindow(infowindow);
+              CloseInfowindows();
             } else {
+              CloseInfowindows();
               infowindow.open(map, marker);
               infowindow.opened = true;
             }
