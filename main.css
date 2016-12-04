@@ -1,16 +1,17 @@
 .country {
   font-family: "adobe-garamond-pro";
   text-decoration: underline;
+  color: rgba(26,26,26,.7);
 }
 
 a {
   text-decoration: none;
-  color: black;
+  color: rgba(26,26,26,.7);
 }
 
 a:hover {
   text-decoration: underline;
-  color: black;
+  color: rgba(26,26,26,.7);
 }
 
 .blog {
