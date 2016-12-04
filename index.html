@@ -3,6 +3,7 @@
   <head>
     <title>Simple Map</title>
     <meta name="viewport" content="initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <meta charset="utf-8">
     <style>
       html, body {
@@ -46,8 +47,8 @@
           countryMapObjects.markers.push(this.marker);
           this.marker.setMap(map);
           this.infowindow = new google.maps.InfoWindow({
-            content: '<p><u>'+this.country+':</u></a></p>\
-                      <p><a href='+this.blog_URL+' target="_blank">Blog</a></p>'
+            content: '<p class="country">'+this.country+':</a></p>\
+                      <p class="blog"><a href='+this.blog_URL+' target="_blank">Blog</a></p>'
                       // <p><a href='+this.gallery_URL+'>Gallery</a></p>'
           });
           countryMapObjects.infowindows.push(this.infowindow);

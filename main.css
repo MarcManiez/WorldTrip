@@ -1,0 +1,18 @@
+.country {
+  font-family: "adobe-garamond-pro";
+  text-decoration: underline;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+.blog {
+  font-family: "adobe-garamond-pro";
+}
