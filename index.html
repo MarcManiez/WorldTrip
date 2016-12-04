@@ -47,8 +47,8 @@
           this.marker.setMap(map);
           this.infowindow = new google.maps.InfoWindow({
             content: '<p><u>'+this.country+':</u></a></p>\
-                      <p><a href='+this.blog_URL+'>Blog</a></p>\
-                      <p><a href='+this.gallery_URL+'>Gallery</a></p>'
+                      <p><a href='+this.blog_URL+' target="_blank">Blog</a></p>'
+                      // <p><a href='+this.gallery_URL+'>Gallery</a></p>'
           });
           countryMapObjects.infowindows.push(this.infowindow);
         }
@@ -60,21 +60,19 @@
 
         function CloseInfowindows(){
           countryMapObjects.infowindows.forEach(CloseInfowindow);
-          // for (var i = 0 ; i < countryMapObjects.infowindows.length ; i++) {
-          //   CloseInfowindow(countryMapObjects.infowindows[i]);
-          // }
         }
+
+
 
         function CreateListener(marker, infowindow){
           marker.addListener('click', function() {
-            // CloseInfowindows();
             if (infowindow.opened) {
-              // CloseInfowindow(infowindow);
-              CloseInfowindows();
+              CloseInfowindow(infowindow);
             } else {
-              CloseInfowindows();
+              CloseInfowindow(openWindow);
               infowindow.open(map, marker);
               infowindow.opened = true;
+              openWindow = infowindow;
             }
           });
         }
@@ -97,6 +95,7 @@
         var austria = new Country("Austria", {lat: 47.5162, lng: 14.5501}, "http://www.detour-ahead.com/blog?tag=Austria", "http://www.detour-ahead.com/austria/");
         var italy = new Country("Italy", {lat: 41.8719, lng: 12.5674}, "http://www.detour-ahead.com/blog?tag=Italy", "http://www.detour-ahead.com/italy/");
 
+var openWindow = france.infowindow;
         for (var n in countryMapObjects.countriesVisited) {
           CreateListener(countryMapObjects.markers[n], countryMapObjects.infowindows[n]);
         }
